@@ -2057,16 +2057,22 @@ int CheckButton(int Level, int Flag, int MaxFlag)
                 }
                 
                 break;
-            case 1:                             
+            case 1:
                 ap->AppMode = 1;
                 
                 ap->FromTitle = 0;
+#ifdef TARGET_PC   
+                ap->NextMode = 11;
+                ap->Mode = 10;
                 
+                CallSystemSe(0, 0);   
+#else          
                 ap->LastLevel = Level;
                 
                 sys->gm_mode = 0;
                 
                 TitleCall(ap->PortId, 2);
+#endif
                 break;
             case 2:                                
                 ap->AppMode = 0;
